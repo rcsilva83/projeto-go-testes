@@ -12,15 +12,16 @@ on:
 jobs:
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.OS }}
     strategy:
       matrix:
         go_version: ['1.20', '1.17', '>=1.20']
+        OS: ['ubuntu-latest', 'windows-11']
     steps:
     - uses: actions/checkout@v4
 
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go_version }}
 
